@@ -15,3 +15,16 @@ target_link_libraries (
   )
 smf_seastar_target(smf_utils)
 install(TARGETS smf_utils DESTINATION lib)
+set(smf_utils_headers
+  ${PROJECT_SOURCE_DIR}/src/utils/caching/clock_pro/chunk.h
+  ${PROJECT_SOURCE_DIR}/src/utils/caching/clock_pro/clock_list.h
+  ${PROJECT_SOURCE_DIR}/src/utils/caching/clock_pro/clock_pro.h
+  ${PROJECT_SOURCE_DIR}/src/utils/checks/cpu.h
+  ${PROJECT_SOURCE_DIR}/src/utils/checks/disk.h
+  ${PROJECT_SOURCE_DIR}/src/utils/checks/memory.h
+  ${PROJECT_SOURCE_DIR}/src/utils/compression.h
+  ${PROJECT_SOURCE_DIR}/src/utils/human_bytes_printing_utils.h
+  ${PROJECT_SOURCE_DIR}/src/utils/random.h
+  ${PROJECT_SOURCE_DIR}/src/utils/time_utils.h
+  )
+install(FILES ${smf_utils_headers} DESTINATION include/smf/utils)

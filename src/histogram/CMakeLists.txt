@@ -7,3 +7,9 @@ target_link_libraries(smf_tracing
   )
 smf_seastar_target(smf_tracing)
 install(TARGETS smf_tracing DESTINATION lib)
+set(smf_tracing_headers
+  ${PROJECT_SOURCE_DIR}/src/histogram/histogram.h
+  ${PROJECT_SOURCE_DIR}/src/histogram/unique_histogram_adder.h
+  ${PROJECT_SOURCE_DIR}/src/histogram/histogram_seastar_utils.h
+  )
+install(FILES ${smf_tracing_headers} DESTINATION include/smf/histogram)
