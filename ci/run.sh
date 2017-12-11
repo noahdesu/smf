@@ -9,6 +9,11 @@ INSTALL_DIR=$(mktemp -d)
 TEST_DIR=$(mktemp -d)
 trap "rm -rf ${BUILD_DIR} ${INSTALL_DIR} ${TEST_DIR}" EXIT
 
+if [ -n "${USE_CLANG}" ]; then
+  export CC=clang
+  export CXX=clang++
+fi
+
 # configure/build/install
 pushd ${BUILD_DIR}
 cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ${ROOT_DIR}
