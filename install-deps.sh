@@ -2,6 +2,9 @@
 set -e
 
 function debs() {
+  if [ -n "${USE_CLANG}" ]; then
+    extra=clang
+  fi
   apt-get update
   apt-get install -y \
     pkg-config \
@@ -31,10 +34,13 @@ function debs() {
     libpciaccess-dev \
     libgnutls28-dev \
     libre2-dev \
-    python
+    python ${extra}
 }
 
 function rpms() {
+  if [ -n "${USE_CLANG}" ]; then
+    extra=clang
+  fi
   dnf install -y \
     cmake \
     gcc-c++ \
@@ -59,7 +65,7 @@ function rpms() {
     systemtap-sdt-devel \
     lksctp-tools-devel \
     re2-devel \
-    python
+    python ${extra}
 }
 
 source /etc/os-release
