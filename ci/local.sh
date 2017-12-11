@@ -21,6 +21,7 @@ debian:sid
 debian:buster
 "
 
+# options: USE_CLANG=1
 for img in ${IMAGES}; do
   if [[ ${img} != -* ]]; then
     DOCKER_IMAGE=${img} ci/script.sh
