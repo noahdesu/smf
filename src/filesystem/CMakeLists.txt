@@ -18,16 +18,8 @@ add_library(smf_filesystem STATIC
   wal_write_behind_cache.cc
   wal_lcore_map.cc)
 
-# add_dependencies(smf_filesystem
-#   ${PROJECT_SOURCE_DIR}/src/flatbuffers/wal_generated.fb.h)
 target_link_libraries(smf_filesystem
   smf_utils
-  re2
-  #smf_tracing
-  #xxhash_static
-  #zstd.a
-  #re2.a
-  #libroaring.a
-)
+  re2)
 
 install(TARGETS smf_filesystem DESTINATION lib)
