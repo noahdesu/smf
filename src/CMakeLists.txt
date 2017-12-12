@@ -1,6 +1,13 @@
 add_subdirectory(third_party/HdrHistogram_c EXCLUDE_FROM_ALL)
 add_subdirectory(third_party/flatbuffers EXCLUDE_FROM_ALL)
 
+set(ZSTD_BUILD_SHARED ON CACHE BOOL
+  "Enable building zstd static library")
+set(ZSTD_BUILD_SHARED OFF CACHE BOOL
+  "Disable building zstd shared library")
+add_subdirectory(third_party/zstd/build/cmake EXCLUDE_FROM_ALL)
+include_directories(third_party/zstd/lib)
+
 set(SEASTAR_WITH_TESTS OFF CACHE BOOL
   "Disable building Seastar tests and apps")
 add_subdirectory(third_party/seastar)
