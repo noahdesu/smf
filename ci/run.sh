@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR=${THIS_DIR}/../
@@ -14,11 +15,23 @@ if [ -n "${USE_CLANG}" ]; then
   export CXX=clang++
 fi
 
+if [ -n "${USE_NINJA}" ]; then
+  CMAKE_GENERATOR="Ninja"
+  MAKE=ninja
+  MAKE_J=
+else
+  CMAKE_GENERATOR="Unix Makefiles"
+  MAKE=make
+  MAKE_J="-j$(nproc)"
+fi
+
 # configure/build/install
 pushd ${BUILD_DIR}
-cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ${ROOT_DIR}
-make -j$(nproc)
-make install
+cmake -G "${CMAKE_GENERATOR}" \
+  -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+  ${ROOT_DIR}
+${MAKE} ${MAKE_J}
+${MAKE} install
 echo "Installation size: `du -sh ${INSTALL_DIR}`"
 
 export PATH=${INSTALL_DIR}/bin:${PATH}

@@ -34,6 +34,7 @@ function debs() {
     libpciaccess-dev \
     libgnutls28-dev \
     libre2-dev \
+    ninja-build \
     python ${extra}
 }
 
@@ -81,6 +82,7 @@ function rpms() {
     systemtap-sdt-devel \
     lksctp-tools-devel \
     re2-devel \
+    ninja-build \
     python ${extra}
 }
 

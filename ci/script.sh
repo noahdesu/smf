@@ -22,7 +22,7 @@ if [ ! -z ${DOCKER_IMAGE+x} ]; then
   fi
 
   docker run --rm -v ${TRAVIS_BUILD_DIR}:/smf:z,ro \
-    -e USE_CLANG -it -w /smf ${depimg} \
+    -e USE_CLANG -e USE_NINJA -t -w /smf ${depimg} \
     /bin/bash -c "./ci/run.sh"
 else
   ${TRAVIS_BUILD_DIR}/install-deps.sh

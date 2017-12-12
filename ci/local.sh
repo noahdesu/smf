@@ -21,9 +21,9 @@ debian:sid
 debian:buster
 "
 
-# options: USE_CLANG=1
+# options: USE_CLANG=1 USE_NINJA=1
 for img in ${IMAGES}; do
   if [[ ${img} != -* ]]; then
-    DOCKER_IMAGE=${img} ci/script.sh
+    DOCKER_IMAGE=${img} USE_NINJA=1 ci/script.sh
   fi
 done
