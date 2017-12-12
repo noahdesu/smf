@@ -36,9 +36,10 @@ echo "Installation size: `du -sh ${INSTALL_DIR}`"
 
 export PATH=${INSTALL_DIR}/bin:${PATH}
 
-# ctest is great, but it's really useful to run the tests with the installed
-# binaries to catch errors with linking, or any accidentally embedded paths
+# run the unit and integration tests on the installed binaries to catch any
+# linking issues.
 
+# integration tests
 it_names=(
 wal_writer
 histograms
@@ -60,13 +61,47 @@ chain_replication_utils
 )
 
 for idx in "${!it_names[@]}"; do
-  mkdir ${TEST_DIR}/${idx}
-  pushd ${TEST_DIR}/${idx}
+  mkdir ${TEST_DIR}/it_${idx}
+  pushd ${TEST_DIR}/it_${idx}
 
   bname=${it_names[$idx]}_integration_test
   dname=${ROOT_DIR}/src/integration_tests/${it_dirs[$idx]}
   python ${ROOT_DIR}/src/test_runner.py \
     --type integration \
+    --binary ${bname} \
+    --directory ${dname} \
+    --git_root ${ROOT_DIR}
+
+  popd
+done
+
+# unit tests
+ut_names=(
+wal_epoch
+file_size_utils
+human_output
+wal_functor
+clockpro
+compressors
+)
+
+ut_dirs=(
+wal_epoch_extractor
+file_size_utils
+human_bytes_printing_utils
+wal_head_file_functor_tests
+clock_pro
+compressor
+)
+
+for idx in "${!ut_names[@]}"; do
+  mkdir ${TEST_DIR}/ut_${idx}
+  pushd ${TEST_DIR}/ut_${idx}
+
+  bname=${ut_names[$idx]}_unit_test
+  dname=${ROOT_DIR}/src/test/${ut_dirs[$idx]}
+  python ${ROOT_DIR}/src/test_runner.py \
+    --type unit \
     --binary ${bname} \
     --directory ${dname} \
     --git_root ${ROOT_DIR}
