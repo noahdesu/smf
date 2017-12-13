@@ -54,6 +54,8 @@ cmake_install.cmake
 CPackConfig.cmake
 CPackSourceConfig.cmake
 CTestTestfile.cmake
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
 
 src/utils/zstd_ext-prefix/
 src/rpc/smf_gen/generated_demo_service
@@ -67,3 +69,6 @@ src/smfb/client/smfb_low_level_client
 # tests
 src/integration_tests/*_test
 src/test/*_unit_test
+
+# docs
+Doxyfile

@@ -35,6 +35,7 @@ function debs() {
     libgnutls28-dev \
     libre2-dev \
     ninja-build \
+    doxygen \
     python ${extra}
 }
 
@@ -83,6 +84,7 @@ function rpms() {
     lksctp-tools-devel \
     re2-devel \
     ninja-build \
+    doxygen \
     python ${extra}
 }
 

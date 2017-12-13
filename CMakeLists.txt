@@ -26,4 +26,8 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/src
   ${PROJECT_BINARY_DIR}/src)
 
+include(CMake/doxygen.cmake)
+include(CMake/ccache.cmake)
+include(CMake/packaging.cmake)
+
 add_subdirectory(src)

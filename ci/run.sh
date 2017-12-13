@@ -34,6 +34,9 @@ ${MAKE} ${MAKE_J}
 ${MAKE} install
 echo "Installation size: `du -sh ${INSTALL_DIR}`"
 
+# test docs
+${MAKE} doc
+
 export PATH=${INSTALL_DIR}/bin:${PATH}
 
 # run the unit and integration tests on the installed binaries to catch any

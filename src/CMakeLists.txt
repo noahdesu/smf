@@ -1,5 +1,11 @@
+set(SEASTAR_WITH_TESTS OFF CACHE BOOL
+  "Disable building Seastar tests and apps")
+add_subdirectory(third_party/seastar)
+
 add_subdirectory(third_party/HdrHistogram_c EXCLUDE_FROM_ALL)
+
 add_subdirectory(third_party/flatbuffers EXCLUDE_FROM_ALL)
+include_directories(third_party/flatbuffers/include)
 
 set(ZSTD_BUILD_SHARED ON CACHE BOOL
   "Enable building zstd static library")
@@ -8,25 +14,17 @@ set(ZSTD_BUILD_SHARED OFF CACHE BOOL
 add_subdirectory(third_party/zstd/build/cmake EXCLUDE_FROM_ALL)
 include_directories(third_party/zstd/lib)
 
-set(SEASTAR_WITH_TESTS OFF CACHE BOOL
-  "Disable building Seastar tests and apps")
-add_subdirectory(third_party/seastar)
-
 add_subdirectory(googletest/googlemock)
 
-include_directories(third_party/flatbuffers/include)
+include_directories(third_party/fastrange)
 
-# so fastrange/fastrange.h resolves correctly. fastrange is so tiny that it
-# seems like the perfect candidate for just checking into the tree.
-include_directories(third_party)
+add_library(xxhash STATIC third_party/xxHash/xxhash.c)
+target_include_directories(xxhash
+  PUBLIC third_party/xxHash)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# TODO: replace with cmake compiler flag test tools
-# TODO: https://github.com/arsenm/sanitizers-cmake
-# TODO: check cmake default flags (debug: O0, O2, -g)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto -Wall -Werror -Wextra -Wformat")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wmissing-braces -Wparentheses -Wpointer-arith")

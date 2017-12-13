@@ -1,8 +1,3 @@
-add_library(xxhash STATIC
-  ${PROJECT_SOURCE_DIR}/src/third_party/xxHash/xxhash.c)
-target_include_directories(xxhash PUBLIC
-  ${PROJECT_SOURCE_DIR}/src/third_party/xxHash)
-
 add_library(smf_utils STATIC
   random.cc
   checks/cpu.cc
