@@ -22,4 +22,7 @@ target_link_libraries(smf_filesystem
   smf_utils
   re2)
 
+# TODO: remove this when code gen uses better library interface
+add_dependencies(smf_filesystem rpc_serialization)
+
 install(TARGETS smf_filesystem DESTINATION lib)

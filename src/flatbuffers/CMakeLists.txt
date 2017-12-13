@@ -14,7 +14,9 @@ function(smf_gen_helper target source)
   add_custom_target(${target}_generated DEPENDS ${output})
   add_library(${target} INTERFACE)
   target_include_directories(${target} INTERFACE ${CMAKE_CURRENT_BINARY_DIR})
-  add_dependencies(${target} ${target}_generated)
+  add_dependencies(${target}
+    ${target}_generated
+    rpc_serialization)
 endfunction(smf_gen_helper)
 
 set(FLATBUFFERS_FLATC_SCHEMA_EXTRA_ARGS
@@ -27,6 +29,7 @@ set(FLATBUFFERS_FLATC_SCHEMA_EXTRA_ARGS
   --cpp-str-type 'seastar::sstring'
 )
 
+# TODO: fine-grained code generation/dependencies
 set(FLATBUFFERS_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/rpc.fbs
   ${CMAKE_CURRENT_SOURCE_DIR}/raft.fbs
