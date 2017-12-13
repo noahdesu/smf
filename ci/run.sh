@@ -25,17 +25,20 @@ else
   MAKE_J="-j$(nproc)"
 fi
 
-# configure/build/install
+# configure
 pushd ${BUILD_DIR}
 cmake -G "${CMAKE_GENERATOR}" \
   -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
   ${ROOT_DIR}
+
+# build docs
+${MAKE} doc 2> /dev/null
+
+# build project
 ${MAKE} ${MAKE_J}
 ${MAKE} install
 echo "Installation size: `du -sh ${INSTALL_DIR}`"
 
-# test docs
-${MAKE} doc
 
 export PATH=${INSTALL_DIR}/bin:${PATH}
 
