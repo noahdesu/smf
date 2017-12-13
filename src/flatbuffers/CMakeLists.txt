@@ -28,12 +28,12 @@ set(FLATBUFFERS_FLATC_SCHEMA_EXTRA_ARGS
 )
 
 set(FLATBUFFERS_FILES
-  rpc.fbs
-  raft.fbs
-  chain_replication.fbs
-  wal.fbs
-  demo_service.fbs
-  timestamp.fbs)
+  ${CMAKE_CURRENT_SOURCE_DIR}/rpc.fbs
+  ${CMAKE_CURRENT_SOURCE_DIR}/raft.fbs
+  ${CMAKE_CURRENT_SOURCE_DIR}/chain_replication.fbs
+  ${CMAKE_CURRENT_SOURCE_DIR}/wal.fbs
+  ${CMAKE_CURRENT_SOURCE_DIR}/demo_service.fbs
+  ${CMAKE_CURRENT_SOURCE_DIR}/timestamp.fbs)
 
 build_flatbuffers(
   "${FLATBUFFERS_FILES}"
