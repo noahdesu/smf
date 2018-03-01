@@ -18,6 +18,8 @@ matrix:
     - os: linux
       env: IMAGE=ubuntu:artful
     - os: linux
+      env: IMAGE=ubuntu:xenial
+    - os: linux
       env: IMAGE=fedora:27 USE_NINJA=1
     - os: linux
       env: IMAGE=fedora:26 USE_NINJA=1
@@ -27,6 +29,8 @@ matrix:
       env: IMAGE=debian:buster USE_NINJA=1
     - os: linux
       env: IMAGE=ubuntu:artful USE_NINJA=1
+    - os: linux
+      env: IMAGE=ubuntu:xenial USE_NINJA=1
 
 script:
   - ci/one.sh
