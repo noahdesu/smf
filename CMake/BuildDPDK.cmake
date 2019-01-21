@@ -102,14 +102,14 @@ function(build_dpdk dpdk_dir)
   endif()
 
   foreach(c
-      bus_pci
+      #bus_pci
       eal
       ethdev
       kvargs
       mbuf
       mempool
       mempool_ring
-      pci
+      #pci
       ring)
     add_library(dpdk::${c} STATIC IMPORTED)
     add_dependencies(dpdk::${c} dpdk-ext)
