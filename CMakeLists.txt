@@ -13,6 +13,26 @@ if(NOT CMAKE_BUILD_TYPE)
    set(CMAKE_BUILD_TYPE Release)
 endif()
 
+configure_file(CMakeLists.txt.in seastar-build/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+  RESULT_VARIABLE result
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/seastar-build )
+if(result)
+  message(FATAL_ERROR "CMake step for seastar failed: ${result}")
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+  RESULT_VARIABLE result
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/seastar-build )
+if(result)
+  message(FATAL_ERROR "Build step for seastar failed: ${result}")
+endif()
+
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/build/release")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/build/release/_cooking/installed")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/cmake")
+
+find_package (Seastar REQUIRED)
+
 find_package(Doxygen)
 
 # https://github.com/ceph/ceph/blob/master/CMakeLists.txt

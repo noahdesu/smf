@@ -57,7 +57,6 @@ target_include_directories(smf
   SYSTEM PUBLIC ${PROJECT_SOURCE_DIR}/src/third_party/flat_hash_map
   SYSTEM PUBLIC ${PROJECT_SOURCE_DIR}/src/third_party/zstd/lib
   SYSTEM PUBLIC ${PROJECT_SOURCE_DIR}/src/third_party/xxHash
-  SYSTEM PUBLIC "${seastar_INCLUDE_DIRS}"
   )
 if(CMAKE_BUILD_TYPE MATCHES Debug)
   target_compile_definitions(smf PUBLIC -DSMF_DEBUG)
@@ -83,10 +82,9 @@ target_compile_definitions(smf
   PUBLIC -DXXH_PRIVATE_API)
 
 target_link_libraries(smf
-  seastar
+  Seastar::seastar
   libzstd_static
   hdr_histogram_static
-  fmt
   lz4)
 
 install(TARGETS smf DESTINATION lib)

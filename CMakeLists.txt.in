@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 2.8.2)
+
+project(seastar-build NONE)
+
+include(ExternalProject)
+ExternalProject_Add(seastar
+  SOURCE_DIR         "${CMAKE_SOURCE_DIR}/src/third_party/seastar"
+  CONFIGURE_COMMAND  ./configure.py --mode=release --enable-dpdk --without-tests --without-apps --without-demos
+  BUILD_IN_SOURCE    1
+  BUILD_COMMAND      ninja -C build/release
+  INSTALL_COMMAND    ""
+)
