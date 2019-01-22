@@ -4,7 +4,9 @@ project(seastar-build NONE)
 
 include(ExternalProject)
 ExternalProject_Add(seastar
-  SOURCE_DIR         "${CMAKE_SOURCE_DIR}/src/third_party/seastar"
+  GIT_REPOSITORY    https://github.com/scylladb/seastar.git
+  GIT_TAG           dc351d8cfe0e5a95e00b2360a849640561790a34
+  SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/seastar-src"
   CONFIGURE_COMMAND  ./configure.py --mode=release --enable-dpdk --without-tests --without-apps --without-demos
   BUILD_IN_SOURCE    1
   BUILD_COMMAND      ninja -C build/release

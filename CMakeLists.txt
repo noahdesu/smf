@@ -27,9 +27,9 @@ if(result)
   message(FATAL_ERROR "Build step for seastar failed: ${result}")
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/build/release")
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/build/release/_cooking/installed")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/third_party/seastar/cmake")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/seastar-src/build/release")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/seastar-src/build/release/_cooking/installed")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_BINARY_DIR}/seastar-src/cmake")
 
 find_package (Seastar REQUIRED)
 

@@ -4,6 +4,7 @@
 #include <seastar/core/app-template.hh>
 #include <seastar/core/distributed.hh>
 // smf
+#include <iostream>
 #include "smf/histogram_seastar_utils.h"
 #include "smf/log.h"
 

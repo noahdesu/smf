@@ -26,7 +26,3 @@
 [submodule "src/third_party/flat_hash_map"]
 	path = src/third_party/flat_hash_map
 	url = https://github.com/skarupke/flat_hash_map.git
-[submodule "src/third_party/seastar"]
-	path = src/third_party/seastar
-	url = https://github.com/scylladb/seastar.git
-	ignore = dirty
