@@ -106,7 +106,6 @@ if(SMF_INSTALL)
   install(
     FILES
     ${CMAKE_CURRENT_BINARY_DIR}/smf-config.cmake
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindBoost.cmake
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/smfc_generator.cmake
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindZstd.cmake
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindxxHash.cmake
